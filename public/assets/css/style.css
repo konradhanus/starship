@@ -1,6 +1,6 @@
 .gameField{
     position: relative;
-    width: 900px;
+    width: 600px;
     height: 500px;
     background-color: gray;
     border: 1px solid black;
@@ -9,5 +9,16 @@
 .airPlane{
     position: absolute;
     bottom: 0px;
-    left: 400px
+    left: 250px
+}
+
+.minesBasic{
+    position: absolute;
+    bottom: 300px;
+    left: 300px;
+}
+
+.minesBasic > img{
+    width: 50px;
+    height: 50px
 }
