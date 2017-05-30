@@ -1,0 +1,13 @@
+.gameField{
+    position: relative;
+    width: 900px;
+    height: 500px;
+    background-color: gray;
+    border: 1px solid black;
+}
+
+.airPlane{
+    position: absolute;
+    bottom: 0px;
+    left: 400px
+}
