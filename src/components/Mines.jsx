@@ -9,6 +9,10 @@ class Mines extends Component {
     }
   }
 
+  // componentWillUpdate(){
+  //   console.log(this.state.x1, this.state.y1);
+  // }
+
   render() {
     return (
       <div
@@ -17,7 +21,10 @@ class Mines extends Component {
         "bottom": this.state.y + "px",
         "left": this.state.x + "px"
       }}>
-        <img src="assets/pictures/mine.png"/>
+          {this.props.mines.boom == "Yes" ?
+            <img src="assets/pictures/explosion.gif"/> :
+            <img src="assets/pictures/mine.png"/>
+          }
       </div>
     );
   }

@@ -26,6 +26,8 @@ class AirPlane extends Component {
         } else if (e.keyCode == '39') {
             this.props.goRight();
         }
+
+        this.props.detectColision();
     }
 
     render() {

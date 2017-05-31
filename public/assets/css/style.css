@@ -9,7 +9,8 @@
 .airPlane{
     position: absolute;
     bottom: 0px;
-    left: 250px
+    left: 250px;
+    border: 1px solid black;
 }
 
 .minesBasic{
@@ -20,5 +21,6 @@
 
 .minesBasic > img{
     width: 50px;
-    height: 50px
+    height: 50px;
+    border: 1px solid black;
 }

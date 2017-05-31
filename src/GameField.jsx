@@ -7,12 +7,13 @@ class GameField extends Component {
     super();
     this.state = {
       airplane: {
-        x: 0,
+        x: 110,
         y: 0
       },
       mines: {
-        x: 60,
-        y: 300
+        x: 150,
+        y: 300,
+        boom: "No"
       }
     }
   }
@@ -66,6 +67,25 @@ class GameField extends Component {
     }
   }
 
+  detectColision(){
+    var rect1 = {x: this.state.airplane.x, y: this.state.airplane.y, width: 100, height: 100}
+    var rect2 = {x: this.state.mines.x, y: this.state.mines.y, width: 50, height: 50}
+
+    if (rect1.x < rect2.x + rect2.width &&
+      rect1.x + rect1.width > rect2.x &&
+      rect1.y < rect2.y + rect2.height &&
+      rect1.height + rect1.y > rect2.y) {
+        // collision detected!
+         this.setState({
+            mines: {
+              x: this.state.mines.x,
+              y: this.state.mines.y,
+              boom: "Yes"
+            }
+          })
+    }
+  }
+
   render() {
     return (
       <div>
@@ -75,8 +95,9 @@ class GameField extends Component {
             goUp={this.goUp.bind(this)}
             goDown={this.goDown.bind(this)}
             goLeft={this.goLeft.bind(this)}
-            goRight={this.goRight.bind(this)}/>
-          <Mines mines={this.state.mines}/>
+            goRight={this.goRight.bind(this)}
+            detectColision={this.detectColision.bind(this)}/>
+          <Mines mines={this.state.mines} airplane={this.state.airplane}/>
         </div>
         <div>
           ({this.state.airplane.x},{this.state.airplane.y})
