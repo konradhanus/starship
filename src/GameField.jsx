@@ -10,15 +10,17 @@ class GameField extends Component {
         x: 110,
         y: 0
       },
-      mines: [{
-        x: 150,
-        y: 300,
-        boom: false
-      },{
-       x: 250,
-        y: 400,
-        boom: false 
-      }]
+      mines: [
+        {
+          x: 150,
+          y: 300,
+          boom: false
+        }, {
+          x: 250,
+          y: 400,
+          boom: false
+        }
+      ]
     }
   }
 
@@ -71,31 +73,40 @@ class GameField extends Component {
     }
   }
 
-  detectColision(){
-    var rect1 = {x: this.state.airplane.x, y: this.state.airplane.y, width: 100, height: 100}
-    var rect2 = {x: this.state.mines.x, y: this.state.mines.y, width: 50, height: 50}
-
-    if (rect1.x < rect2.x + rect2.width &&
-      rect1.x + rect1.width > rect2.x &&
-      rect1.y < rect2.y + rect2.height &&
-      rect1.height + rect1.y > rect2.y) {
-        // collision detected!
-         this.setState({
-            mines: {
-              x: this.state.mines.x,
-              y: this.state.mines.y,
-              boom: true
-            }
-          })
+  detectColision() {
+    var rect1 = {
+      x: this.state.airplane.x,
+      y: this.state.airplane.y,
+      width: 100,
+      height: 100
     }
-    else{
-       this.setState({
-            mines: {
-              x: this.state.mines.x,
-              y: this.state.mines.y,
-              boom: false
-            }
-          })
+
+    for (let i = 0; i <= this.state.mines.length; i++) {
+      var rect2 = {
+        x: this.state.mines[i].x,
+        y: this.state.mines[i].y,
+        width: 50,
+        height: 50
+      }
+
+      if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.height + rect1.y > rect2.y) {
+        // collision detected!
+        this.setState({
+          mines: {
+            x: this.state.mines[i].x,
+            y: this.state.mines[i].y,
+            boom: true
+          }
+        })
+      } else {
+        this.setState({
+          mines: {
+            x: this.state.mines[i].x,
+            y: this.state.mines[i].y,
+            boom: false
+          }
+        })
+      }
     }
   }
 
@@ -106,13 +117,25 @@ class GameField extends Component {
         <div className="gameField">
           <AirPlane
             airplane={this.state.airplane}
-            goUp={this.goUp.bind(this)}
-            goDown={this.goDown.bind(this)}
-            goLeft={this.goLeft.bind(this)}
-            goRight={this.goRight.bind(this)}
-            detectColision={this.detectColision.bind(this)}/>
-          {this.state.mines.map((m) => <Mines mines={m} airplane={this.state.airplane}/>)}
-          
+            goUp={this
+            .goUp
+            .bind(this)}
+            goDown={this
+            .goDown
+            .bind(this)}
+            goLeft={this
+            .goLeft
+            .bind(this)}
+            goRight={this
+            .goRight
+            .bind(this)}
+            detectColision={this
+            .detectColision
+            .bind(this)}/> {this
+            .state
+            .mines
+            .map((m) => <Mines mines={m} airplane={this.state.airplane}/>)}
+
         </div>
         <div>
           ({this.state.airplane.x},{this.state.airplane.y})
