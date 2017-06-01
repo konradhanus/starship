@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import AirPlane from './components/Airplane.jsx';
-import Mines from './components/Mines.jsx';
+import Artefacts from './components/Artefacts.jsx';
 
 class GameField extends Component {
   constructor() {
@@ -10,17 +10,19 @@ class GameField extends Component {
         x: 110,
         y: 0
       },
-      mines: [
+      artefacts: [
         {
           id: 0,
           x: 150,
           y: 300,
-          boom: false
+          boom: false,
+          type: "mine"
         }, {
           id: 1,
           x: 250,
           y: 400,
-          boom: false
+          boom: false,
+          type: "fuel"
         }
       ]
     }
@@ -83,29 +85,29 @@ class GameField extends Component {
       height: 100
     }
 
-    for (let i = 0; i < this.state.mines.length; i++) {
+    for (let i = 0; i < this.state.artefacts.length; i++) {
       var rect2 = {
-        x: this.state.mines[i].x,
-        y: this.state.mines[i].y,
+        x: this.state.artefacts[i].x,
+        y: this.state.artefacts[i].y,
         width: 50,
         height: 50
       }
 
       let newArray = [];
-      newArray = this.state.mines;
+      newArray = this.state.artefacts;
 
       if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.height + rect1.y > rect2.y) {
         // collision detected!
         newArray[i].boom = true;
 
         this.setState({
-          mines: newArray
+          artefacts: newArray
         })
       } else {
         newArray[i].boom = false;
 
         this.setState({
-          mines: newArray
+          artefacts: newArray
         })
       }
     }
@@ -135,9 +137,8 @@ class GameField extends Component {
             .bind(this)}/> 
             {this
             .state
-            .mines
-            .map((m) => <Mines mines={m} airplane={this.state.airplane}/>)}
-        {/*<Mines mines={this.state.mines[0]} key={0} airplane={this.state.airplane}/>*/}
+            .artefacts
+            .map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
         </div>
         <div>
           ({this.state.airplane.x},{this.state.airplane.y})

@@ -13,14 +13,22 @@
     border: 1px solid black;
 }
 
-.minesBasic{
+.artefactsBasic{
     position: absolute;
     bottom: 300px;
     left: 300px;
 }
 
-.minesBasic > img{
+.artefactsBasic > div > img{
     width: 50px;
     height: 50px;
     border: 1px solid black;
+}
+
+.artefactsBasic > img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    margin-left: -60px;
+    margin-bottom: -75px;
 }
