@@ -8,7 +8,8 @@ class GameField extends Component {
     this.state = {
       airplane: {
         x: 110,
-        y: 0
+        y: 0,
+        fuel: 100
       },
       artefacts: [
         {
@@ -16,13 +17,15 @@ class GameField extends Component {
           x: 150,
           y: 300,
           boom: false,
-          type: "mine"
+          type: "mine",
+          visible: true
         }, {
           id: 1,
           x: 250,
           y: 400,
           boom: false,
-          type: "fuel"
+          type: "fuel",
+          visible: true
         }
       ]
     }
@@ -141,7 +144,9 @@ class GameField extends Component {
             .map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
         </div>
         <div>
-          ({this.state.airplane.x},{this.state.airplane.y})
+          postion:({this.state.airplane.x},{this.state.airplane.y})
+          <br/>
+          fuel:{this.state.airplane.fuel}
         </div>
       </div>
     );
