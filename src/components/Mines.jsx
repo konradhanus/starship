@@ -4,6 +4,7 @@ class Mines extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.mines.id,
       x: props.mines.x,
       y: props.mines.y
     }
@@ -14,7 +15,7 @@ class Mines extends Component {
   // }
 
   render() {
-    console.log(this.props.id)
+    console.log(this.state.id)
     return (
       <div
         className="minesBasic"
