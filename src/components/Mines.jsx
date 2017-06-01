@@ -21,7 +21,7 @@ class Mines extends Component {
         "bottom": this.state.y + "px",
         "left": this.state.x + "px"
       }}>
-          {this.props.mines.boom == "Yes" ?
+          {this.props.mines.boom ?
             <img src="assets/pictures/explosion.gif"/> :
             <img src="assets/pictures/mine.png"/>
           }

@@ -10,16 +10,20 @@ class GameField extends Component {
         x: 110,
         y: 0
       },
-      mines: {
+      mines: [{
         x: 150,
         y: 300,
-        boom: "No"
-      }
+        boom: false
+      },{
+       x: 250,
+        y: 400,
+        boom: false 
+      }]
     }
   }
 
   goUp() {
-    console.log(this.state);
+    //console.log(this.state);
     if (this.state.airplane.y + 10 + 100 < 500) {
       let y = this.state.airplane.y + 10;
       this.setState({
@@ -80,13 +84,28 @@ class GameField extends Component {
             mines: {
               x: this.state.mines.x,
               y: this.state.mines.y,
-              boom: "Yes"
+              boom: true
+            }
+          })
+    }
+    else{
+       this.setState({
+            mines: {
+              x: this.state.mines.x,
+              y: this.state.mines.y,
+              boom: false
             }
           })
     }
   }
 
   render() {
+    let mines;
+
+    for(let i=0; i<= this.state.mines.length; i++){
+      mines += <Mines mines={this.state.mines[i]} airplane={this.state.airplane}/>;
+    }
+
     return (
       <div>
         <div className="gameField">
@@ -97,7 +116,7 @@ class GameField extends Component {
             goLeft={this.goLeft.bind(this)}
             goRight={this.goRight.bind(this)}
             detectColision={this.detectColision.bind(this)}/>
-          <Mines mines={this.state.mines} airplane={this.state.airplane}/>
+          {mines}
         </div>
         <div>
           ({this.state.airplane.x},{this.state.airplane.y})

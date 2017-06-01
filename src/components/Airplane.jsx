@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class AirPlane extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log(props);
         this.state = {
             x: props.airplane.x,
             y: props.airplane.y
