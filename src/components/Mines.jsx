@@ -14,6 +14,7 @@ class Mines extends Component {
   // }
 
   render() {
+    console.log(this.props.id)
     return (
       <div
         className="minesBasic"
@@ -21,7 +22,7 @@ class Mines extends Component {
         "bottom": this.state.y + "px",
         "left": this.state.x + "px"
       }}>
-          {this.props.mines.boom ?
+          {this.props.boom ?
             <img src="assets/pictures/explosion.gif"/> :
             <img src="assets/pictures/mine.png"/>
           }
