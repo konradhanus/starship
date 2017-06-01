@@ -100,11 +100,6 @@ class GameField extends Component {
   }
 
   render() {
-    let mines;
-
-    for(let i=0; i<= this.state.mines.length; i++){
-      mines += <Mines mines={this.state.mines[i]} airplane={this.state.airplane}/>;
-    }
 
     return (
       <div>
@@ -116,7 +111,8 @@ class GameField extends Component {
             goLeft={this.goLeft.bind(this)}
             goRight={this.goRight.bind(this)}
             detectColision={this.detectColision.bind(this)}/>
-          {mines}
+          {this.state.mines.map((m) => <Mines mines={m} airplane={this.state.airplane}/>)}
+          
         </div>
         <div>
           ({this.state.airplane.x},{this.state.airplane.y})
