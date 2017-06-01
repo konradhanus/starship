@@ -1,9 +1,12 @@
 .gameField{
     position: relative;
+    float: left;
     width: 600px;
     height: 500px;
-    background-color: gray;
+  
     border: 1px solid black;
+    background-image: url("../maps/mapa1.jpg"); 
+    background-size: 100% auto;
 }
 
 .airPlane{
@@ -31,4 +34,10 @@
     border: 1px solid black;
     margin-left: -60px;
     margin-bottom: -75px;
+}
+
+.scoring
+{
+    float: left;
+    margin-left: 10px
 }

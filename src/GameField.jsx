@@ -9,6 +9,7 @@ class GameField extends Component {
       airplane: {
         x: 110,
         y: 0,
+        life: 5,
         fuel: 100
       },
       artefacts: [
@@ -34,50 +35,51 @@ class GameField extends Component {
   goUp() {
     //console.log(this.state);
     if (this.state.airplane.y + 10 + 100 < 500) {
-      let y = this.state.airplane.y + 10;
+      let newArray = this.state.airplane;
+      newArray.y =  this.state.airplane.y + 15;
+      newArray.fuel = this.state.airplane.fuel - 1;
       this.setState({
-        airplane: {
-          x: this.state.airplane.x,
-          y: y
-        }
+        airplane: newArray
       })
     }
   }
 
   goDown() {
     if (this.state.airplane.y - 10 > 0) {
-      let y = this.state.airplane.y - 10;
+      let newArray = this.state.airplane;
+      newArray.y = this.state.airplane.y - 15;
+      newArray.fuel = this.state.airplane.fuel - 1;
       this.setState({
-        airplane: {
-          x: this.state.airplane.x,
-          y: y
-        }
+        airplane: newArray
       })
     }
   }
 
   goLeft() {
     if (this.state.airplane.x - 10 > 0) {
-      let x = this.state.airplane.x - 10;
+      let newArray = this.state.airplane;
+      newArray.x = this.state.airplane.x - 15;
+      newArray.fuel = this.state.airplane.fuel - 1;
       this.setState({
-        airplane: {
-          x: x,
-          y: this.state.airplane.y
-        }
+        airplane: newArray
       })
     }
   }
 
   goRight() {
     if (this.state.airplane.x + 10 + 100 < 600) {
-      let x = this.state.airplane.x + 10;
+      let newArray = this.state.airplane;
+      newArray.x = this.state.airplane.x + 15;
+      newArray.fuel = this.state.airplane.fuel - 1;
       this.setState({
-        airplane: {
-          x: x,
-          y: this.state.airplane.y
-        }
+        airplane: newArray
       })
     }
+  }
+
+  setRandomPosition(){
+    
+
   }
 
   detectColision() {
@@ -102,13 +104,11 @@ class GameField extends Component {
       if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.height + rect1.y > rect2.y) {
         // collision detected!
         newArray[i].boom = true;
-
         this.setState({
           artefacts: newArray
         })
       } else {
         newArray[i].boom = false;
-
         this.setState({
           artefacts: newArray
         })
@@ -120,7 +120,7 @@ class GameField extends Component {
 
     return (
       <div>
-        <div className="gameField">
+        <div className="gameField" style={{backgroundPositionY: this.props.timer }}>
           <AirPlane
             airplane={this.state.airplane}
             goUp={this
@@ -143,9 +143,11 @@ class GameField extends Component {
             .artefacts
             .map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
         </div>
-        <div>
+        <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})
-          <br/>
+          <br/><br/>
+          life:{this.state.airplane.life}
+          <br/><br/>
           fuel:{this.state.airplane.fuel}
         </div>
       </div>
