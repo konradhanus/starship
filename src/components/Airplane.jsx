@@ -26,8 +26,8 @@ class AirPlane extends Component {
             console.log('zwolniony');
         })*/
         let this2 = this;
-        document.addEventListener('keydown', function(e){  this2.checkKey(e.which); console.log(e.which)})
-        document.addEventListener('keyup', function(e){ this2.unCheckKey(e.which); console.log('odnacisniety'+e.which)})
+        document.addEventListener('keydown', function(e){  this2.checkKey(e.which);})
+        document.addEventListener('keyup', function(e){ this2.unCheckKey(e.which);})
     }
 
 
