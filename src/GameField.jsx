@@ -32,6 +32,8 @@ class GameField extends Component {
     }
   }
 
+
+
   goUp() {
     //console.log(this.state);
     if (this.state.airplane.y + 10 + 100 < 500) {
@@ -121,27 +123,15 @@ class GameField extends Component {
     return (
       <div>
         <div className="gameField" style={{backgroundPositionY: this.props.timer }}>
-          <AirPlane
-            airplane={this.state.airplane}
-            goUp={this
-            .goUp
-            .bind(this)}
-            goDown={this
-            .goDown
-            .bind(this)}
-            goLeft={this
-            .goLeft
-            .bind(this)}
-            goRight={this
-            .goRight
-            .bind(this)}
-            detectColision={this
-            .detectColision
-            .bind(this)}/> 
-            {this
-            .state
-            .artefacts
-            .map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
+          <AirPlane airplane={this.state.airplane} 
+                    goUp={this.goUp.bind(this)}
+                    goDown={this.goDown.bind(this)}
+                    goLeft={this.goLeft.bind(this)}
+                    goRight={this.goRight.bind(this)}
+                    detectColision={this.detectColision.bind(this)}
+                    timer={this.props.timer}/> 
+
+            {this.state.artefacts.map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
         </div>
         <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})
@@ -149,6 +139,8 @@ class GameField extends Component {
           life:{this.state.airplane.life}
           <br/><br/>
           fuel:{this.state.airplane.fuel}
+          <br /><br />
+          timer: {this.props.timer}
         </div>
       </div>
     );
