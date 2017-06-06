@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AirPlane from './gameField/AirPlane.jsx';
 import Artefacts from './gameField/Artefacts.jsx';
 import Lifes from './gameField/Lifes.jsx';
+import Enemy from './gameField/Enemy.jsx';
 
 class GameField extends Component {
   constructor() {
@@ -29,7 +30,13 @@ class GameField extends Component {
           type: "fuel",
           visible: true
         }
-      ]
+      ],
+      enemys: {
+        x: 250,
+        y: 350,
+        type: 1
+        }
+      
     }
   }
 
@@ -37,7 +44,7 @@ class GameField extends Component {
 
   goUp() {
     //console.log(this.state);
-    if (this.state.airplane.y + 10 + 100 < 500) {
+    if (this.state.airplane.y + 10 + 100 < this.props.height) {
       let newArray = this.state.airplane;
       newArray.y =  this.state.airplane.y + 15;
       newArray.fuel = this.state.airplane.fuel - 1;
@@ -70,7 +77,7 @@ class GameField extends Component {
   }
 
   goRight() {
-    if (this.state.airplane.x + 10 + 100 < 600) {
+    if (this.state.airplane.x + 10 + 100 < this.props.width) {
       let newArray = this.state.airplane;
       newArray.x = this.state.airplane.x + 15;
       newArray.fuel = this.state.airplane.fuel - 1;
@@ -128,7 +135,7 @@ class GameField extends Component {
 
     return (
       <div>
-        <div className="gameField" style={{backgroundPositionY: this.props.timer }}>
+        <div className="gameField" style={{backgroundPositionY: this.props.timer, width: this.props.width, height: this.props.height}}>
           <AirPlane airplane={this.state.airplane} 
                     goUp={this.goUp.bind(this)}
                     goDown={this.goDown.bind(this)}
@@ -138,6 +145,7 @@ class GameField extends Component {
                     timer={this.props.timer}/> 
 
             {this.state.artefacts.map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
+            <Enemy enemy={this.state.enemys} gameFiledWidth={this.props.width} gameFieldHeight={this.props.height} />
         </div>
         <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})
