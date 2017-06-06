@@ -16,15 +16,6 @@ class AirPlane extends Component {
        
     this.timer();
 
-        //document.onkeydown = this.checkKey.bind(this);
-
-        /*document.onkeydown(function(){
-            console.log('nacisniety');
-        })
-        
-        document.onkeyup(function(){
-            console.log('zwolniony');
-        })*/
         let this2 = this;
         document.addEventListener('keydown', function(e){  this2.checkKey(e.which);})
         document.addEventListener('keyup', function(e){ this2.unCheckKey(e.which);})
@@ -49,8 +40,7 @@ class AirPlane extends Component {
 
 
     unCheckKey(e) {
-        //e = e || window.event;
-
+    
         if (e == '38') {
             this.goUpStop();
         } else if (e == '40') {
@@ -68,7 +58,6 @@ class AirPlane extends Component {
     }
 
     checkKey(e) {
-        //e = e || window.event;
 
         if (e == '38') {
             this.goDownStop();

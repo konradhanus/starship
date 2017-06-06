@@ -16,7 +16,7 @@ class Game extends Component {
       this1.setState({
         time: this1.state.time + 1
       }); 
-    }, 4);
+    }, 40);
     
   }
 
