@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import AirPlane from './components/Airplane.jsx';
-import Artefacts from './components/Artefacts.jsx';
+import AirPlane from './gameField/AirPlane.jsx';
+import Artefacts from './gameField/Artefacts.jsx';
+import Lifes from './gameField/Lifes.jsx';
 
 class GameField extends Component {
   constructor() {
@@ -103,11 +104,16 @@ class GameField extends Component {
       let newArray = [];
       newArray = this.state.artefacts;
 
+      let newAirPlane = this.state.airplane;
+      
+
       if (rect1.x < rect2.x + rect2.width && rect1.x + rect1.width > rect2.x && rect1.y < rect2.y + rect2.height && rect1.height + rect1.y > rect2.y) {
         // collision detected!
         newArray[i].boom = true;
+        newAirPlane.life = this.state.airplane.life-1;
         this.setState({
-          artefacts: newArray
+          artefacts: newArray,
+          airplane: newAirPlane
         })
       } else {
         newArray[i].boom = false;
@@ -136,7 +142,8 @@ class GameField extends Component {
         <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})
           <br/><br/>
-          life:{this.state.airplane.life}
+          <Lifes lifes={this.state.airplane.life} />  
+          
           <br/><br/>
           fuel:{this.state.airplane.fuel}
           <br /><br />

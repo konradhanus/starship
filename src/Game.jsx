@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GameField from './GameField.jsx';
+import GameField from './components/GameField.jsx';
 
 class Game extends Component {
   constructor(){
