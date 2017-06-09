@@ -14,6 +14,15 @@
     bottom: 0;
 }
 
+.shoot{
+    width: 2px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: 400;
+    left: 200;
+}
+
 .enemy{
   -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
   -moz-transform: rotate(180deg);        /* FF */

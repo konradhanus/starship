@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Shoot from './AirPlane/Shoot.jsx'
 
 class Enemy extends Component {
     constructor(props)
@@ -8,7 +9,8 @@ class Enemy extends Component {
             x: props.enemy.x,
             y: props.enemy.y,
             gameFieldWidth: props.gameFieldWidth,
-            gameFieldHeight: props.gameFieldHeight
+            gameFieldHeight: props.gameFieldHeight,
+            speed: props.speed
         }
       
 
@@ -22,7 +24,7 @@ class Enemy extends Component {
            
 
                 let newState = there.state;
-                newState.x = x1;
+                newState.x = there.randomPositionX(there.state.gameFieldWidth);
                 newState.y = y1;
                 there.setState({newState});
             } else {
@@ -34,16 +36,23 @@ class Enemy extends Component {
                 newState.y = y1;
                 there.setState({newState});
             }
-        }, 20);
+        }, there.state.speed);
 
+    }
+
+    randomPositionX(max)
+    {
+        
+        let random =  Math.floor((Math.random() * (max-100)) + 1);
+        return random; 
     }
 
     render()
     {
-
+       
         return (
             <div>({this.state.x}, {this.state.y})
-
+            
                 <img
                     src="assets/pictures/samolot4.png"
                     className="enemy"

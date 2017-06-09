@@ -3,6 +3,7 @@ import AirPlane from './gameField/AirPlane.jsx';
 import Artefacts from './gameField/Artefacts.jsx';
 import Lifes from './gameField/Lifes.jsx';
 import Enemy from './gameField/Enemy.jsx';
+import Shoot from './gameField/AirPlane/Shoot.jsx';
 
 class GameField extends Component {
   constructor() {
@@ -136,6 +137,7 @@ class GameField extends Component {
     return (
       <div>
         <div className="gameField" style={{backgroundPositionY: this.props.timer, width: this.props.width, height: this.props.height}}>
+          <Shoot airplane={this.state.airplane} />
           <AirPlane airplane={this.state.airplane} 
                     goUp={this.goUp.bind(this)}
                     goDown={this.goDown.bind(this)}
@@ -145,7 +147,11 @@ class GameField extends Component {
                     timer={this.props.timer}/> 
 
             {this.state.artefacts.map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
-            <Enemy enemy={this.state.enemys} gameFiledWidth={this.props.width} gameFieldHeight={this.props.height} />
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={20}/>
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={17}/>
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={15}/>
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={10}/>
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={13}/>
         </div>
         <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})

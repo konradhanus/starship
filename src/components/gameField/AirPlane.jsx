@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 class AirPlane extends Component {
     constructor(props) {
         super(props);
@@ -97,7 +98,7 @@ class AirPlane extends Component {
                 "left": this.props.airplane.x + "px"
             }}>{this.state.timer}
             
-                <img src="assets/pictures/samolot1.png"/>
+                <img src="assets/pictures/samolot1.png"/> 
             </div>
         );
     }
