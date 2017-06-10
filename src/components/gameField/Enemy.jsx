@@ -49,7 +49,7 @@ class Enemy extends Component {
 
     render()
     {
-       
+       this.props.setEnemyLocation(this.state.x, this.state.y);
         return (
             <div>({this.state.x}, {this.state.y})
             

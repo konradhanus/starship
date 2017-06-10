@@ -59,11 +59,17 @@ class Shoot extends Component {
     }
 
     checkKey(e) {
+        let this1 = this;
 
         console.log(e);
         if (e == '32') {
             this.timer();
         }
+        if(e == '16')
+        {
+            this1.props.detectColistionWithEnemy();
+        }
+        
         //this.props.detectColision();
     }
 
