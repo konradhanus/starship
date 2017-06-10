@@ -23,6 +23,10 @@
     left: 200;
 }
 
+.hide{
+    visibility: hidden;
+}
+
 .enemy{
   -webkit-transform: rotate(180deg);     /* Chrome and other webkit browsers */
   -moz-transform: rotate(180deg);        /* FF */
