@@ -12,6 +12,8 @@ class Enemy extends Component {
             gameFieldHeight: props.gameFieldHeight,
             speed: props.speed
         }
+
+        
       
 
         let there = this;
@@ -27,6 +29,8 @@ class Enemy extends Component {
                 newState.x = there.randomPositionX(there.state.gameFieldWidth);
                 newState.y = y1;
                 there.setState({newState});
+                there.props.setEnemyVisibility('visible', 'inherit');
+                
             } else {
                 let x1 = (there.state.x);
                 let y1 = (there.state.y) - 4;
@@ -34,7 +38,7 @@ class Enemy extends Component {
                 let newState = there.state;
                 newState.x = x1;
                 newState.y = y1;
-                there.setState({newState});
+                there.setState({newState});  
             }
         }, there.state.speed);
 
@@ -55,10 +59,12 @@ class Enemy extends Component {
             
                 <img
                     src="assets/pictures/samolot4.png"
-                    className="enemy"
+                    className="enemy z"
                     style={{
                     left: this.state.x,
-                    bottom: this.state.y
+                    bottom: this.state.y, 
+                    visibility: this.props.enemy.visibility,
+                    display: this.props.enemy.display
                 }}/>
             </div>
         );

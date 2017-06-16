@@ -64,17 +64,19 @@ class Shoot extends Component {
         console.log(e);
         if (e == '32') {
             this.timer();
+            let enemyLocation = this1.props.getEnemyLocation();   
+            if((enemyLocation.x-50) <= this.props.airplane.x && (enemyLocation.x+50) >= this.props.airplane.x)
+            {
+                this1.props.setEnemyVisibility('hidden', 'none');
+               
+            }
+            
         }
-        if(e == '16')
-        {
-            this1.props.detectColistionWithEnemy();
-        }
-        
-        //this.props.detectColision();
+       
     }
 
     render(){
-        console.log(this.state.time);
+        //console.log(this.state.time);
         let temporaryPositionX, 
             temporaryPositionY;
         let visiblity;

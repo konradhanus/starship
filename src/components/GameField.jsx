@@ -35,14 +35,21 @@ class GameField extends Component {
         }
       ],
       enemys: {
-        x: 250,
+        x: 245,
         y: 350,
-        type: 1
+        type: 1, 
+        visibility: 'visible'
       },
       enemysLocationX: 0,
-      enemysLocationY: 0
+      enemysLocationY: 0,
+     
       
       
+    }
+
+    this.enemyLocation = {
+      x: 0,
+      y: 0 
     }
   }
 
@@ -98,9 +105,28 @@ class GameField extends Component {
 
   }
 
+  setEnemyVisibility(visibility, display)
+  {
+    let enemys = this.state.enemys;
+    enemys.visibility = visibility;
+    enemys.display = display;
+
+    this.setState({
+      enemys: enemys
+    })
+  }
+
   setEnemyLocation(x,y)
   {
-     console.log(x,y);
+     this.enemyLocation = {
+       x: x,
+       y: y 
+     };
+  }
+
+  setShootLocation(x,y)
+  {
+
   }
 
   detectColision() {
@@ -142,15 +168,16 @@ class GameField extends Component {
     }
   }
 
-  detectColistionWithEnemy(){
-   alert('kolizja');
+  getEnemyLocation(){
+    return(this.enemyLocation);
   }
   render() {
 
+    
     return (
       <div>
         <div className="gameField" style={{backgroundPositionY: this.props.timer, width: this.props.width, height: this.props.height}}>
-          <Shoot airplane={this.state.airplane} detectColistionWithEnemy={this.detectColistionWithEnemy.bind(this)}/>
+          <Shoot airplane={this.state.airplane} getEnemyLocation={this.getEnemyLocation.bind(this)} setEnemyVisibility={this.setEnemyVisibility.bind(this)} />
           <AirPlane airplane={this.state.airplane} 
                     goUp={this.goUp.bind(this)}
                     goDown={this.goDown.bind(this)}
@@ -160,7 +187,9 @@ class GameField extends Component {
                     timer={this.props.timer}/> 
 
             {this.state.artefacts.map((m) => <Artefacts artefacts={m} airplane={this.state.airplane}/>)}
-            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={200} setEnemyLocation={this.setEnemyLocation.bind(this)} there={this}/>
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={90} setEnemyLocation={this.setEnemyLocation.bind(this)} setEnemyVisibility={this.setEnemyVisibility.bind(this)} />
+            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={80} setEnemyLocation={this.setEnemyLocation.bind(this)} setEnemyVisibility={this.setEnemyVisibility.bind(this)} />
+            
             {/*<Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={170}/>
             <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={150}/>
             <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={100}/>
@@ -168,6 +197,7 @@ class GameField extends Component {
         </div>
         <div className="scoring">
           postion:({this.state.airplane.x},{this.state.airplane.y})
+          visibility: {this.state.enemys.visibility}
           <br/><br/>
           locationEnemy: {this.state.enemysLocationX}, {this.state.enemysLocationY}
           <Lifes lifes={this.state.airplane.life} />  
