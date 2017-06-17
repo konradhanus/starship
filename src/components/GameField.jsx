@@ -219,9 +219,7 @@ class GameField extends Component {
   }
 
  
-  render() {
-    //console.log(this.enemyLocation);
-    
+  render() {    
     return (
       <div>
         <div className="gameField" style={{backgroundPositionY: this.props.timer, width: this.props.width, height: this.props.height}}>
@@ -254,14 +252,6 @@ class GameField extends Component {
             setEnemyVisibility={this.setEnemyVisibility.bind(this)} 
             id={id}
           />)}
-
-
-          
-            
-            {/*<Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={170}/>
-            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={150}/>
-            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={100}/>
-            <Enemy enemy={this.state.enemys} gameFieldWidth={this.props.width} gameFieldHeight={this.props.height}  speed={130}/>*/}
         </div>
         <div className="scoring">
           <Lifes lifes={this.state.airplane.life} />  
