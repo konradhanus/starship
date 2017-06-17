@@ -23,7 +23,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <GameField timer={this.state.time} width={600} height={690}/>
+        <GameField timer={this.state.time} width={600} height={(window.innerHeight-150)}/>
       </div>
     );
   }

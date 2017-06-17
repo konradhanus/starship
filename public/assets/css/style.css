@@ -12,6 +12,10 @@
 .starShip{
     position: absolute;
     bottom: 0;
+    width: 600px;
+    margin-left: -300px;
+    position: absolute;
+    left: 50%;
 }
 
 .shoot{
@@ -67,4 +71,8 @@
 {
     float: left;
     margin-left: 10px
+}
+
+body {
+    overflow:hidden;
 }

@@ -65,10 +65,13 @@ class Shoot extends Component {
         if (e == '32') {
             this.timer();
             let enemyLocation = this1.props.getEnemyLocation();   
-            if((enemyLocation.x-50) <= this.props.airplane.x && (enemyLocation.x+50) >= this.props.airplane.x)
+
+            for(let i=0; i < enemyLocation.length; i++)
             {
-                this1.props.setEnemyVisibility('hidden', 'none');
-               
+                if((enemyLocation[i].x-50) <= this.props.airplane.x && (enemyLocation[i].x+50) >= this.props.airplane.x)
+                {
+                    this1.props.setEnableEnemyExplosion(i);
+                }
             }
             
         }

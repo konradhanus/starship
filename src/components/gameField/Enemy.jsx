@@ -6,8 +6,8 @@ class Enemy extends Component {
     {
         super(props);
         this.state = {
-            x: props.enemy.x,
-            y: props.enemy.y,
+            x: props.enemy[props.id].x,
+            y: props.enemy[props.id].y,
             gameFieldWidth: props.gameFieldWidth,
             gameFieldHeight: props.gameFieldHeight,
             speed: props.speed
@@ -20,20 +20,20 @@ class Enemy extends Component {
         setInterval(function () {
             if (there.state.y < -100) {
                 let x1 = (there.state.x);
-                let y1 = there.state.gameFieldHeight+100;
+                let y1 = there.state.gameFieldHeight+10;
 
-                console.log(there.state.gameFieldHeight);
+                //console.log(there.state.gameFieldHeight);
            
 
                 let newState = there.state;
                 newState.x = there.randomPositionX(there.state.gameFieldWidth);
                 newState.y = y1;
                 there.setState({newState});
-                there.props.setEnemyVisibility('visible', 'inherit');
+                there.props.setEnemyVisibility('visible', 'inherit', there.props.id);
                 
             } else {
                 let x1 = (there.state.x);
-                let y1 = (there.state.y) - 4;
+                let y1 = (there.state.y) - 10;
 
                 let newState = there.state;
                 newState.x = x1;
@@ -53,18 +53,24 @@ class Enemy extends Component {
 
     render()
     {
-       this.props.setEnemyLocation(this.state.x, this.state.y);
+
+        let visi, disp;
+        visi = this.props.enemy[this.props.id].visibility;
+        disp = this.props.enemy[this.props.id].display;
+  
+
+       this.props.setEnemyLocation(this.state.x, this.state.y, this.props.id);
         return (
             <div>({this.state.x}, {this.state.y})
             
                 <img
-                    src="assets/pictures/samolot4.png"
+                    src={this.props.enemy[this.props.id].showExplosion ? "assets/pictures/explosion.gif" : "assets/pictures/samolot4.png"}
                     className="enemy z"
                     style={{
                     left: this.state.x,
                     bottom: this.state.y, 
-                    visibility: this.props.enemy.visibility,
-                    display: this.props.enemy.display
+                    visibility: visi,
+                    display: disp
                 }}/>
             </div>
         );
